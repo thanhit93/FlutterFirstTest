@@ -27,6 +27,8 @@ dependencies:
   intl: ^0.15.2
   shared_preferences: ^0.4.0
 
+  image_picker: ^0.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,3 +77,6 @@ flutter:
   # see https://flutter.io/custom-fonts/#from-packages
   assets:
       - images/bg0.jpeg
+      - images/ic_background_empty.jpg
+      - images/ic_camera.png
+      - images/ic_avatar_default.png

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/Home/child_page/FirstPage.dart';
+import 'package:flutter_app1/edit_profile/edit_profile.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -66,27 +67,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeState extends State<HomeScreen> {
   int _currentIndex = 0;
-  static List<DropdownMenuItem<String>> listDrop = [];
   final List<Widget> _children = [
-    FirstPage(getDrop()),
-    PlaceholderWidget(Colors.deepOrange),
+    FirstPage(),
+    EditProfile(),
     PlaceholderWidget(Colors.green)
   ];
-
-  static List<DropdownMenuItem<String>> getDrop(){
-    return listDrop;
-  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loadDataDropdown();
   }
 
   @override
   Widget build(BuildContext context) {
-    loadDataDropdown();
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -113,13 +107,6 @@ class _HomeState extends State<HomeScreen> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  void loadDataDropdown(){
-    listDrop = [];
-    listDrop.add(new DropdownMenuItem(child: DropdownMenuItem(child: Text("item 1"), value: "thanh",)));
-    listDrop.add(new DropdownMenuItem(child: DropdownMenuItem(child: Text("item 2"), value: "truong",)));
-    listDrop.add(new DropdownMenuItem(child: DropdownMenuItem(child: Text("item 3"), value: "thsbf",)));
   }
 }
 

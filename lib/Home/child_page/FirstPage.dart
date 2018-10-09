@@ -1,77 +1,119 @@
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
-  final List<DropdownMenuItem<String>> listDrop;
 
-  FirstPage(this.listDrop){
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FirstPageScreen(),
+    );
+  }
+}
+
+class FirstPageScreen extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return FirstPageState();
+  }
+}
+
+class FirstPageState extends State<FirstPageScreen>{
+   List<DropdownMenuItem<String>> listDrop = List();
+  String _selecttion;
+  @override
+  void initState() {
+    loadDataDropdown();
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  void loadDataDropdown(){
+    if(listDrop.length == 0) {
+      listDrop.add(new DropdownMenuItem(
+          child: DropdownMenuItem(child: Text("item 1"), value: 'thanh',)));
+      listDrop.add(new DropdownMenuItem(
+          child: DropdownMenuItem(child: Text("item 2"), value: 'truong',)));
+      listDrop.add(new DropdownMenuItem(
+          child: DropdownMenuItem(child: Text("item 3"), value: 'thsbf',)));
+      print(listDrop.elementAt(0).child);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(listDrop.elementAt(0).value);
+    // TODO: implement build
     return new Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        /*TabBarView(
+          children: <Widget>[
+            /*TabBarView(
                 controller: controller,
                 children: <Widget>[
                 ]
             )*/
-        Text('First Page to test'),
-        GestureDetector(
-            onTap: () {
-              _showDialog(context);
-            },
-            child: Container(
-              color: Colors.red,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              height: 40.0,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Show dialog",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    )
-                  ]),
-            )),
-        GestureDetector(
-            onTap: () {
-              _showCustomAlertDialog(context);
-            },
-            child: Container(
-              color: Colors.blue,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              height: 40.0,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Show dialog with custom",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    )
-                  ]),
-            )),
-          Row(
-            children: <Widget>[
-              Expanded(child: Container(
+            Text('First Page to test'),
+            GestureDetector(
+                onTap: () {
+                  _showDialog(context);
+                },
+                child: Container(
+                  color: Colors.red,
+                  padding: EdgeInsets.only(left: 15.0, right: 15.0),
                   height: 40.0,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Show dialog",
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        )
+                      ]),
+                )),
+            GestureDetector(
+                onTap: () {
+                  _showCustomAlertDialog(context);
+                },
+                child: Container(
                   color: Colors.blue,
-                  child: DropdownButton(items: listDrop, onChanged: (value){
-                     print('test drop down $value');
-                  })),),
+                  padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                  height: 40.0,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Show dialog with custom",
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        )
+                      ]),
+                )),
+            Row(
+              children: <Widget>[
+                Expanded(child: Container(
+                    height: 40.0,
+                    color: Colors.blue,
+                    child: DropdownButton(items: listDrop, onChanged: (value){
+                      print('test list ${listDrop.elementAt(0)}');
+                      print('test drop down $value');
+                      _selecttion = value;
+                    })),),
 
-            ],
-          ),
+              ],
+            ),
 
-      ],
-    ));
+          ],
+        ));
   }
+
 }
+
+
 
 void _showDialog(BuildContext context) {
   showDialog(
